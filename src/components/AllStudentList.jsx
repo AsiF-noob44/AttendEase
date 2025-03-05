@@ -1,58 +1,14 @@
-const AllStudentList = (props) => {
+import { useContext } from "react";
+import { StudentCtx } from "../contexts/Student";
+
+const AllStudentList = () => {
   const {
-    setStudentName,
-    setEditMode,
-    setEditableStudent,
     students,
-    setStudents,
-  } = props;
-
-  const editHandler = (student) => {
-    setEditMode(true);
-    setStudentName(student.name);
-    setEditableStudent(student);
-  };
-
-  const removeHandler = (studentId) => {
-    const updatedStudentList = students.filter(
-      (student) => student.id !== studentId
-    );
-    setStudents(updatedStudentList);
-  };
-
-  const makePresentHandler = (student) => {
-    if (student.isPresent !== undefined) {
-      return alert(
-        `This Student is already in the ${
-          student.isPresent === true ? "Present List" : "Absent List"
-        }`
-      );
-    }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return { ...item, isPresent: true };
-      }
-      return item;
-    });
-    setStudents(updatedStudentList);
-  };
-
-  const makeAbsentHandler = (student) => {
-    if (student.isPresent !== undefined) {
-      return alert(
-        `This Student is already in the ${
-          student.isPresent === true ? "Present List" : "Absent List"
-        }`
-      );
-    }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return { ...item, isPresent: false };
-      }
-      return item;
-    });
-    setStudents(updatedStudentList);
-  };
+    editHandler,
+    removeHandler,
+    makePresentHandler,
+    makeAbsentHandler,
+  } = useContext(StudentCtx);
 
   return (
     <div className="list all-students">
