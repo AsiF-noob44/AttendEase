@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { StudentCtx } from "../contexts/Student";
-import TypingPlaceholderInput from "./TypingPlaceholderInput"; // Ensure this line is present
+import TypingPlaceholderInput from "./TypingPlaceholderInput";
 
 const StudentForm = () => {
   const { studentStates, changeNameHandler, submitHandler } =
@@ -12,11 +12,9 @@ const StudentForm = () => {
         <TypingPlaceholderInput
           value={studentStates.studentName}
           onChange={changeNameHandler}
-          className="typing-placeholder-input compact-input" // Add this line
+          className="typing-placeholder-input compact-input"
         />
-        <label className={studentStates.studentName ? "filled" : ""}>
-          {/* Remove the static text */}
-        </label>
+        <label className={studentStates.studentName ? "filled" : ""}></label>
       </div>
       <button type="submit">
         {studentStates.editMode ? "Update Student" : "Add Student"}

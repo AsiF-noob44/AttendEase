@@ -19,7 +19,7 @@ h1 {
   background: linear-gradient(135deg, #f06, #4a90e2);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: #fff; /* Change text color to white */
+  -webkit-text-fill-color: #fff;
 }
 
 .student-section,
@@ -57,7 +57,7 @@ input[type="text"] {
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 300px; /* Change width to a normal size */
+  width: 300px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -72,7 +72,7 @@ input[type="text"]:focus {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 4px;
-  width: 300px; /* Change width to a normal size */
+  width: 300px;
   box-sizing: border-box;
 }
 
@@ -93,7 +93,7 @@ input[type="text"]::placeholder {
 }
 
 input[type="text"]::placeholder {
-  color: transparent; /* Hide the default placeholder */
+  color: transparent;
 }
 
 label {

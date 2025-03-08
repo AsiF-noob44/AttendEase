@@ -1,7 +1,7 @@
 import "./App.css";
 import StudentForm from "./components/StudentForm";
 import StudentSection from "./components/StudentSection";
-import { Helmet } from "react-helmet"; // Add this line
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
