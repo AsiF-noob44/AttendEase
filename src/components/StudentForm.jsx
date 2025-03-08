@@ -7,16 +7,18 @@ const StudentForm = () => {
     useContext(StudentCtx);
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className="space-y-4">
       <div className="input-container">
         <TypingPlaceholderInput
           value={studentStates.studentName}
           onChange={changeNameHandler}
           className="typing-placeholder-input compact-input"
         />
-        <label className={studentStates.studentName ? "filled" : ""}></label>
       </div>
-      <button type="submit">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
         {studentStates.editMode ? "Update Student" : "Add Student"}
       </button>
     </form>

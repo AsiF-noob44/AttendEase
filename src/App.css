@@ -68,53 +68,15 @@ input[type="text"]:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.typing-placeholder-input {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 4px;
-  width: 300px;
-  box-sizing: border-box;
-}
-
-input[type="text"]::placeholder {
+.typing-placeholder-input::placeholder {
   color: #999;
 }
 
 @keyframes typing {
-  0% {
-    content: "Enter a Student Name";
-  }
-  50% {
-    content: "Enter a Student Name";
-  }
-  100% {
-    content: "Enter a Student Name";
-  }
-}
-
-input[type="text"]::placeholder {
-  color: transparent;
 }
 
 label {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  color: #999;
-  font-style: italic;
-  pointer-events: none;
-  transform: translateY(-50%);
-  transition: all 0.2s ease;
-}
-
-input[type="text"]:focus + label,
-input[type="text"].filled + label {
-  top: -10px;
-  left: 10px;
-  font-size: 12px;
-  color: #333;
-  background: #fff;
-  padding: 0 5px;
+  display: none;
 }
 
 ul {
@@ -133,4 +95,8 @@ li {
 li span {
   flex-grow: 1;
   text-align: left;
+}
+
+li button {
+  margin-left: 10px;
 }

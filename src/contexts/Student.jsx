@@ -23,6 +23,12 @@ const StudentProvider = (props) => {
     if (studentStates.studentName.trim() === "") {
       return alert("Please enter a valid student name");
     }
+    const studentExists = studentStates.students.some(
+      (student) => student.name === studentStates.studentName
+    );
+    if (studentExists) {
+      return alert("Student Already Exists");
+    }
     studentStates.editMode
       ? dispatch({ type: "update_student" })
       : dispatch({ type: "create_student" });
