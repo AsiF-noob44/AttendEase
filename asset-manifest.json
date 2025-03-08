@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/AttendEase/static/css/main.01258b15.css",
+    "main.js": "/AttendEase/static/js/main.8e9709d5.js",
+    "static/js/453.d4f8438f.chunk.js": "/AttendEase/static/js/453.d4f8438f.chunk.js",
+    "index.html": "/AttendEase/index.html",
+    "main.01258b15.css.map": "/AttendEase/static/css/main.01258b15.css.map",
+    "main.8e9709d5.js.map": "/AttendEase/static/js/main.8e9709d5.js.map",
+    "453.d4f8438f.chunk.js.map": "/AttendEase/static/js/453.d4f8438f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01258b15.css",
+    "static/js/main.8e9709d5.js"
+  ]
+}
