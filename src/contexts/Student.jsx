@@ -1,59 +1,31 @@
-import { createContext, useState } from "react";
-
+import { createContext, useReducer } from "react";
+import { studentReducer } from "../reducers/student";
 export const StudentCtx = createContext();
+
+const initState = {
+  studentName: "",
+  students: [],
+  editMode: false,
+  editableStudent: null,
+};
 
 const StudentProvider = (props) => {
   const { children } = props;
-  const [students, setStudents] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [editableStudent, setEditableStudent] = useState(null);
-  const [studentName, setStudentName] = useState("");
+
+  const [studentStates, dispatch] = useReducer(studentReducer, initState);
 
   const changeNameHandler = (e) => {
-    setStudentName(e.target.value);
+    dispatch({ type: "change_student_name", payload: e.target.value });
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    if (studentName.trim() === "") {
+    if (studentStates.studentName.trim() === "") {
       return alert("Please enter a valid student name");
     }
-    editMode ? updateHandler() : createHandler();
-  };
-
-  const createHandler = () => {
-    const newStudent = {
-      id: new Date().getTime(),
-      name: studentName,
-      isPresent: undefined,
-    };
-    setStudents([...students, newStudent]);
-    setStudentName("");
-  };
-
-  const updateHandler = () => {
-    const updatedStudentList = students.map((item) => {
-      if (item.id === editableStudent.id) {
-        return { ...item, name: studentName };
-      }
-      return item;
-    });
-
-    setStudents(updatedStudentList);
-    setStudentName("");
-    setEditMode(false);
-    setEditableStudent(null);
-  };
-  const editHandler = (student) => {
-    setEditMode(true);
-    setStudentName(student.name);
-    setEditableStudent(student);
-  };
-
-  const removeHandler = (studentId) => {
-    const updatedStudentList = students.filter(
-      (student) => student.id !== studentId
-    );
-    setStudents(updatedStudentList);
+    studentStates.editMode
+      ? dispatch({ type: "update_student" })
+      : dispatch({ type: "create_student" });
   };
 
   const makePresentHandler = (student) => {
@@ -64,13 +36,10 @@ const StudentProvider = (props) => {
         }`
       );
     }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return { ...item, isPresent: true };
-      }
-      return item;
+    dispatch({
+      type: "change_isPresent_status_of_a_student",
+      payload: { id: student.id, isPresent: true },
     });
-    setStudents(updatedStudentList);
   };
 
   const makeAbsentHandler = (student) => {
@@ -81,40 +50,27 @@ const StudentProvider = (props) => {
         }`
       );
     }
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return { ...item, isPresent: false };
-      }
-      return item;
+    dispatch({
+      type: "change_isPresent_status_of_a_student",
+      payload: { id: student.id, isPresent: false },
     });
-    setStudents(updatedStudentList);
   };
 
   const toggleList = (student) => {
-    const updatedStudentList = students.map((item) => {
-      if (item.id === student.id) {
-        return { ...item, isPresent: !item.isPresent };
-      }
-      return item;
+    if (student.isPresent === undefined) {
+      return alert("Please mark the attendance first");
+    }
+    dispatch({
+      type: "change_isPresent_status_of_a_student",
+      payload: { id: student.id, isPresent: !student.isPresent },
     });
-    setStudents(updatedStudentList);
   };
 
   const ctxValue = {
-    students,
-    setStudents,
-    editMode,
-    setEditMode,
-    editableStudent,
-    setEditableStudent,
-    studentName,
-    setStudentName,
+    studentStates,
+    dispatch,
     changeNameHandler,
     submitHandler,
-    createHandler,
-    updateHandler,
-    editHandler,
-    removeHandler,
     makePresentHandler,
     makeAbsentHandler,
     toggleList,

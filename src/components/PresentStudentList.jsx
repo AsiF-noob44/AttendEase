@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { StudentCtx } from "../contexts/Student";
 
 const PresentStudentList = () => {
-  const { students, toggleList } = useContext(StudentCtx);
-  const presentStudentList = students.filter((item) => item.isPresent === true);
+  const { studentStates, toggleList } = useContext(StudentCtx);
+  const presentStudentList = studentStates.students.filter(
+    (item) => item.isPresent === true
+  );
 
   return (
     <div className="list present-students">

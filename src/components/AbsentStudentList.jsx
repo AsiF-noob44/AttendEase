@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { StudentCtx } from "../contexts/Student";
 
 const AbsentStudentList = () => {
-  const { students, toggleList } = useContext(StudentCtx);
+  const { studentStates, toggleList } = useContext(StudentCtx);
 
-  const absentStudentList = students.filter((item) => item.isPresent === false);
+  const absentStudentList = studentStates.students.filter(
+    (item) => item.isPresent === false
+  );
   return (
     <div className="list absent-students">
       <h2>Absent Students</h2>
