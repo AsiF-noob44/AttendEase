@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { StudentCtx } from "../contexts/Student"; // Updated import
+import { StudentCtx } from "../contexts/Student";
+import TypingPlaceholderInput from "./TypingPlaceholderInput"; // Ensure this line is present
 
 const StudentForm = () => {
   const { studentStates, changeNameHandler, submitHandler } =
@@ -7,11 +8,16 @@ const StudentForm = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <input
-        type="text"
-        value={studentStates.studentName}
-        onChange={changeNameHandler}
-      />
+      <div className="input-container">
+        <TypingPlaceholderInput
+          value={studentStates.studentName}
+          onChange={changeNameHandler}
+          className="typing-placeholder-input compact-input" // Add this line
+        />
+        <label className={studentStates.studentName ? "filled" : ""}>
+          {/* Remove the static text */}
+        </label>
+      </div>
       <button type="submit">
         {studentStates.editMode ? "Update Student" : "Add Student"}
       </button>
